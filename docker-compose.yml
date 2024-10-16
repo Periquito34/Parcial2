@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  webflux:
+    build:
+      context: ./webflux
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    networks:
+      - mynetwork
+
+  resolve_enigma_1:
+    build:
+      context: ./ResolveEnigmaAp
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+  resolve_enigma_2:
+    build:
+      context: ./ResolveEnigmaAp2
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - mynetwork
+
+  resolve_enigma_3:
+    build:
+      context: ./ResolveEnigmaAp3
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - mynetwork
+
+  batch:
+    build:
+      context: ./batch
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - mynetwork
+
+  webhook:
+    build:
+      context: ./webhook
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
